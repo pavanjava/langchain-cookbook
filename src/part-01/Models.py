@@ -5,7 +5,7 @@ from langchain.schema import (
     HumanMessage,
     SystemMessage
 )
-from util import setEnv
+from src.util import setEnv
 
 setEnv()
 

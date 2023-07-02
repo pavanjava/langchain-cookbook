@@ -8,7 +8,7 @@
 # (generally is previous ChatMessages or summaries of them).
 # Long term memory deals with how to fetch and update information between conversations.
 
-from util import setEnv
+from src.util import setEnv
 from langchain import OpenAI, ConversationChain
 
 setEnv()

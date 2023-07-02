@@ -9,7 +9,7 @@
 # Toolkits: Sets of tools that when used together can accomplish a specific task.
 # Agent Executor: The logic for running agents with tools.
 
-from util import setEnv
+from src.util import setEnv
 
 from langchain.agents import load_tools, initialize_agent, AgentType
 from langchain.llms import OpenAI
