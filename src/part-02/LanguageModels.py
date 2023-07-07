@@ -4,6 +4,9 @@ from langchain.chat_models import ChatOpenAI
 from langchain.schema import (
     SystemMessage, HumanMessage
 )
+from langchain.prompts.chat import (
+    ChatPromptTemplate, SystemMessagePromptTemplate, HumanMessagePromptTemplate
+)
 from src.util import setEnv
 
 
@@ -28,7 +31,25 @@ if __name__ == '__main__':
     # implementation of chat model, which take list of messages
     llm = ChatOpenAI()
     messages = [
-        SystemMessage(content="Assume you are a helpful assistant that translates English to Hindi."),
-        HumanMessage(content="I love programming.")
+        SystemMessage(content='Assume you are a helpful assistant that translates English to Hindi.'),
+        HumanMessage(content='I love programming.')
     ]
     generate(llm=llm, text=messages)
+
+    # making use of prompt templates
+    template = 'You are a helpful assistant that completes the given {input_sentence}.'
+    system_message_prompt = SystemMessagePromptTemplate.from_template(template)
+    human_template = '{text}'
+    human_message_prompt = HumanMessagePromptTemplate.from_template(human_template)
+
+    chat_prompt = ChatPromptTemplate.from_messages([system_message_prompt, human_message_prompt])
+
+    text = chat_prompt.format_prompt(input_sentence='context in triple tick as shown in ```', text='Explain me something '
+                                                                                                   'about java in the '
+                                                                                                   'form of '
+                                                                                                   '``` '
+                                                                                                   '1. the first point \
+                                                                                                    2. the second point \
+                                                                                                    3. the third point ```'
+                                                                                                   'so on.').to_messages()
+    generate(llm=llm, text=text)
