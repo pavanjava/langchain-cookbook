@@ -9,3 +9,4 @@ pydantic~=1.10.9
 nltk~=3.8.1
 torch~=2.0.1
 transformers~=4.31.0
+pymongo~=4.4.1
